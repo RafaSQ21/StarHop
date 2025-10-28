@@ -16,8 +16,8 @@ class Menu:
 
     def run(self, ):
         menu_option = 0
-        self.window.blit(source=self.surf, dest=self.rect)
         while True:
+            self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(35, "Star Houp", COLOR_YELLOW, ((WIN_WIDTH / 2), 70))
 
             for i in range(len(MENU_OPTION)):
@@ -26,29 +26,30 @@ class Menu:
                 else:
                     self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 120 + 25 * i))
 
-            # por while e inverter a musica com imagem
-            # pygame.mixer_music.load('./asset/Menu.mp3')
-            # pygame.mixer_music.play(-1)
-                pygame.display.flip()
+            pygame.display.flip()
 
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()  # fechar janela
-                        quit()  # Fim pygame
+            # Checar os eventos
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()  # fechar janela
+                    quit()  # Fim pygame
+
+        # por while e inverter a musica com imagem
+        # pygame.mixer_music.load('./asset/Menu.mp3')
+        # pygame.mixer_music.play(-1)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN:
-                        if menu_option < len(MENU_OPTION) - 1:
+                        if menu_option < len(MENU_OPTION) -1:
                             menu_option += 1
                         else:
-                            menu_option = 0
+                           menu_option = 0
                     if event.key == pygame.K_UP:
                         if menu_option > 0:
-                           menu_option -= 1
+                            menu_option -= 1
                         else:
                            menu_option = len(MENU_OPTION) - 1
-                    if event.key== pygame.K_RETURN:
+                    if event.key == pygame.K_RETURN:
                         return MENU_OPTION[menu_option]
-                        # Checar os eventos
 
 
     def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
